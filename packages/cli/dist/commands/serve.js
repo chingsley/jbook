@@ -43,6 +43,7 @@ exports.serveCommand = void 0;
 var path_1 = __importDefault(require("path"));
 var commander_1 = require("commander");
 var local_api_1 = require("local-api");
+var isProduction = process.env.NODE_ENV === 'production';
 exports.serveCommand = new commander_1.Command()
     .command('serve [filename]')
     .description('Open a file for editing')
@@ -61,7 +62,12 @@ exports.serveCommand = new commander_1.Command()
                 case 1:
                     _a.trys.push([1, 3, , 4]);
                     dir = path_1.default.join(process.cwd(), path_1.default.dirname(filename));
-                    return [4 /*yield*/, (0, local_api_1.serve)(parseInt(options.port), path_1.default.basename(filename), dir)];
+                    return [4 /*yield*/, (0, local_api_1.serve)({
+                            port: parseInt(options.port),
+                            filename: path_1.default.basename(filename),
+                            dir: dir,
+                            useProxy: !isProduction
+                        })];
                 case 2:
                     _a.sent();
                     console.log("Opened ".concat(filename, ". Go to http://localhost:").concat(options.port, " to edit the file"));
