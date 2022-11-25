@@ -19,7 +19,7 @@ export const createCellsRouter = (filename: string, dir: string) => {
 
   const fullPath = path.join(dir, filename);
 
-  router.get('./cells', async (req, res) => {
+  router.get('/cells', async (req, res) => {
     const isLocalApiError = (err: any): err is LocalApiError => {
       return typeof err.code === 'string';
     };
