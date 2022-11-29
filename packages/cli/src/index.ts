@@ -1,5 +1,6 @@
-// const serve = require('local-api'); // doesn't work in typescript
+#!/usr/bin/env node
 
+// const serve = require('local-api'); // doesn't work in typescript
 import { program } from 'commander';
 import { serveCommand } from './commands/serve';
 import { loginCommand } from './commands/login';
